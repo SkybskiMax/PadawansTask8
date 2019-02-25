@@ -18,7 +18,7 @@ namespace PadawansTask8
             {
                 throw new ArgumentException();
             }
-            HashSet<string> words = new HashSet<string>(text.Split(new char[] { '.', ',', '?', '-', ':', ';' }));
+            HashSet<string> words = new HashSet<string>(text.Split(new char[] { '.', ',', '?', '-', ':', ';', ' '}));
             text.Split(new char[] { ':', ' ' });
             foreach (string word in words)
             { 
