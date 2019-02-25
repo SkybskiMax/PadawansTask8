@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 
 namespace PadawansTask8
@@ -17,18 +18,20 @@ namespace PadawansTask8
             {
                 throw new ArgumentException();
             }
-            StringBuilder str = new StringBuilder(text);
-            HashSet<string> words = new HashSet<string>(text.Split());
+            HashSet<string> words = new HashSet<string>(text.Split(new char[] { '.', ',', '?', '-', ':', ';' }));
+            text.Split(new char[] { ':', ' ' });
             foreach (string word in words)
-            {
+            { 
                 if (word.Length == 0)
                 {
-                    break;
+                    continue;
                 }
-                int i = str.ToString().IndexOf(word) + word.Length;
-                str.Replace(word, "", i, str.Length - i);
+                string pattern = word;
+                string replace = "";
+                string temp = text.Substring(text.IndexOf(pattern) + pattern.Length);
+                text = text.Replace(temp, temp.Replace(pattern, replace));
             }
-            text = str.ToString();
+
         }
     }
 }
